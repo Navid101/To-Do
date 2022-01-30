@@ -1,0 +1,13 @@
+.list-group{
+    width: 50% !important;
+    
+
+}
+
+@media screen and (max-width:768px) {
+    .list-group{
+        width: 75% !important;
+    }
+    
+}
+
