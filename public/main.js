@@ -1,5 +1,4 @@
 //axios
-// const axios = require('axios')
 
 
 //fethicng
@@ -13,7 +12,9 @@ const delButton = document.querySelector("#delete")
 button.addEventListener('click',(e)=>{
     e.preventDefault()
     addLi(input.value)
+    postTodos(input.value)
     input.value = ""
+
 })
 
 
@@ -83,6 +84,8 @@ const loading = ()=>{
     ul.append(h1);
 }
 
+// https://app-todonode.herokuapp.com/
+
 const getTodos = async()=>{
     const res = await fetch('https://app-todonode.herokuapp.com/api/todos')
     const data = await res.json()
@@ -93,5 +96,30 @@ const getTodos = async()=>{
     }
     
 }
+
+const postTodos = async(val)=>{
+    const res = await fetch('https://app-todonode.herokuapp.com/api/todos',{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({todo:val})
+    })
+    console.log(res.status);
+}
+
+const deleteTodos = async(_id)=>{
+    
+    const deleteItem = await fetch(`https://app-todonode.herokuapp.com/api/todos/${_id}`,{
+        method:'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({todo:val})
+    })
+    
+}
+
+
 getTodos()
 
