@@ -37,7 +37,33 @@ app.post('/api/todos',async(req,res)=>{
     }
 })
 
-app.get('/api/todos/:_id',(req,res)=>{
-    console.log(req.params._id);
-    res.send("Single Todo")
+
+//single todo
+// app.get('/api/todos/:_id',(req,res)=>{
+//     console.log(req.params._id);
+//     res.send("Single Todo")
+// })
+
+app.delete('/api/todos/:_id',async(req,res)=>{
+    try {
+        const deleteTodo = await Todo.deleteOne({_id:req.params._id})
+        res.status(200).json({})
+    } catch (error) {
+        res.status(400).json("No Such Todo")
+    }
+})
+
+app.put('/api/todos/:_id',async(req,res)=>{
+    try {
+        const todo = await Todo.findByIdAndUpdate(req.params._id,req.body,{
+            new:true,
+            runValidators:true
+        })
+        if(!todo){
+            return res.status(400).json("No such Todo")
+        }
+        res.status(200).json(todo)
+    } catch (error) {
+        res.status(400).json("No such Todo")
+    }
 })

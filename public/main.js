@@ -1,3 +1,5 @@
+//axios
+const axios = require('axios')
 //Selectors
 const ul = document.querySelector('#ul');
 const button = document.querySelector(".btn");
@@ -69,3 +71,13 @@ ul.addEventListener('click',(e)=>{
         }
     }
 })
+
+const getTodos = async()=>{
+    const res = await axios.get('https:app-todonode.herokuapp.com/api/todos')
+    const data = res.data
+    data.forEach((data)=>{
+        addLi(data.todo)
+    })
+}
+
+getTodos()
