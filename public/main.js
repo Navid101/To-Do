@@ -1,5 +1,5 @@
 //axios
-const axios = require('axios')
+import axios from "axios";
 //Selectors
 const ul = document.querySelector('#ul');
 const button = document.querySelector(".btn");
