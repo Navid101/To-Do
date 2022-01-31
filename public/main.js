@@ -1,9 +1,3 @@
-//axios
-
-
-//fethicng
-
-//Selectors
 const ul = document.querySelector('#ul');
 const button = document.querySelector(".btn");
 const input = document.querySelector("#input")
@@ -11,9 +5,10 @@ const delButton = document.querySelector("#delete")
 
 button.addEventListener('click',(e)=>{
     e.preventDefault()
-    addLi(input.value)
+    // addLi(input.value)
     postTodos(input.value)
     input.value = ""
+    window.location.reload()
     
 
 })
@@ -163,4 +158,3 @@ const updateTodos = async(id,val)=>{
 
 
 getTodos()
-
