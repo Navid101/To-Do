@@ -104,7 +104,7 @@ const loading = ()=>{
 // https://app-todonode.herokuapp.com/
 // http://localhost:5000/
 const getTodos = async()=>{
-    const res = await fetch('http://localhost:5000/api/todos')
+    const res = await fetch('https://app-todonode.herokuapp.com/api/todos')
     const data = await res.json()
     if(data){
         data.forEach((data)=>{
@@ -115,7 +115,7 @@ const getTodos = async()=>{
 }
 
 const postTodos = async(val)=>{
-    const res = await fetch('http://localhost:5000/api/todos',{
+    const res = await fetch('https://app-todonode.herokuapp.com/api/todos',{
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ const postTodos = async(val)=>{
 
 const deleteTodos = async(id)=>{
     
-    const deleteItem = await fetch(`http://localhost:5000/api/todos/${id}`,{
+    const deleteItem = await fetch(`https://app-todonode.herokuapp.com/api/todos/${id}`,{
         method:'DELETE',
         headers:{
             'Content-Type': 'application/json'
@@ -138,7 +138,7 @@ const deleteTodos = async(id)=>{
 }
 
 const updateTodos = async(id,val)=>{
-    const updateItem = await fetch(`http://localhost:5000/api/todos/${id}`,{
+    const updateItem = await fetch(`https://app-todonode.herokuapp.com/api/todos/${id}`,{
         method:'PUT',
         headers:{
             'Content-Type': 'application/json'
