@@ -11,10 +11,10 @@ const delButton = document.querySelector("#delete")
 
 button.addEventListener('click',(e)=>{
     e.preventDefault()
-    // addLi(input.value)
+    addLi(input.value)
     postTodos(input.value)
     input.value = ""
-    window.location.reload();
+    
 
 })
 
@@ -40,7 +40,8 @@ const addLi = (val)=>{
         li.className = 'list-group-item'
         li.innerHTML = `
         <div class="container d-flex align-items-center justify-content-between">
-                <h3 class="m-0" >${val}</h3>
+                <h3 style="display:none">Dummy</h3>
+                <h3 class="m-0" id="todo">${val}</h3>
                 <button class="btn btn-danger" id="delete">X</button>
         </div>
         `
@@ -81,16 +82,29 @@ ul.addEventListener('click',(e)=>{
         e.preventDefault()
         const todoId = e.target.parentElement.parentElement.previousElementSibling.textContent;
         const editedValue = e.target.previousElementSibling.value;
-        if(editedValue){
-            e.target.parentElement.parentElement.parentElement.parentElement.innerHTML=`
-            <div class="container d-flex align-items-center justify-content-between" id="editContainer">
-                    <h3 style="display:none">${todoId}</h3>
-                    <h3 class="m-0" id="todo">${editedValue}</h3>
-                    <button class="btn btn-danger" id="delete">X</button>
-            </div>
-            `
+        if(todoId !=="Dummy"){
+            if(editedValue){
+                e.target.parentElement.parentElement.parentElement.parentElement.innerHTML=`
+                <div class="container d-flex align-items-center justify-content-between" id="editContainer">
+                        <h3 style="display:none">${todoId}</h3>
+                        <h3 class="m-0" id="todo">${editedValue}</h3>
+                        <button class="btn btn-danger" id="delete">X</button>
+                </div>
+                `
+            }
+            updateTodos(todoId,editedValue)
+        }else{
+            if(editedValue){
+                e.target.parentElement.parentElement.parentElement.parentElement.innerHTML=`
+                <div class="container d-flex align-items-center justify-content-between" id="editContainer">
+                        <h3 style="display:none">Dummy</h3>
+                        <h3 class="m-0" id="todo">${editedValue}</h3>
+                        <button class="btn btn-danger" id="delete">X</button>
+                </div>
+                `
+            }
+            postTodos(editedValue)
         }
-        updateTodos(todoId,editedValue)
     }
 })
 
