@@ -1,5 +1,9 @@
 //axios
-import axios from "axios";
+// const axios = require('axios')
+
+
+//fethicng
+
 //Selectors
 const ul = document.querySelector('#ul');
 const button = document.querySelector(".btn");
@@ -11,6 +15,9 @@ button.addEventListener('click',(e)=>{
     addLi(input.value)
     input.value = ""
 })
+
+
+
 
 //function to create li and append to list
 
@@ -29,9 +36,6 @@ const addLi = (val)=>{
 }
 
 
-const editLi = (val)=>{
-
-}
 
 //function to create li container
 // const addDiv = ()=>{
@@ -72,12 +76,22 @@ ul.addEventListener('click',(e)=>{
     }
 })
 
-const getTodos = async()=>{
-    const res = await axios.get('https:app-todonode.herokuapp.com/api/todos')
-    const data = res.data
-    data.forEach((data)=>{
-        addLi(data.todo)
-    })
+
+const loading = ()=>{
+    const h1 = document.createElement('h1');
+    h1.textContent = 'loading';
+    ul.append(h1);
 }
 
+const getTodos = async()=>{
+    const res = await fetch('https://app-todonode.herokuapp.com/api/todos')
+    const data = await res.json()
+    if(data){
+        data.forEach((data)=>{
+            addLi(data.todo)
+        })
+    }
+    
+}
 getTodos()
+
