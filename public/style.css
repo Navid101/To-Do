@@ -8,6 +8,22 @@
     .list-group{
         width: 75% !important;
     }
+    #editForm{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #editForm input{
+        width: 100%;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        row-gap: 1rem;
+        column-gap: 1rem;
+    }
     
 }
 
